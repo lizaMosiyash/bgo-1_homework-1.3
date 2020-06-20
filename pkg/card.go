@@ -2,7 +2,7 @@ package card
 
 type Transaction struct {
 	Id int64
-	Sum int
+	Sum int64
 	Date int64
 	MccCode string
 	Status string
@@ -10,17 +10,25 @@ type Transaction struct {
 
 type Card struct {
 	Id int
-	Issuer string
 	Balance int
 	Currency string
 	Number string
 	Transactions []*Transaction
 }
 
-//func AddTransaction(card card.Transactions, transaction *Transaction) {
-//	card = append()
-//}
 
-//func SumByMCC(transactions []Transaction, mcc []string) int64 {
-	// TODO: ваш код
-//}
+func AddTransaction(card *Card, transaction *Transaction) {
+	card.Transactions = append(card.Transactions, transaction)
+}
+
+func SumByMCC(transactions []*Transaction, mcc []string) int64 {
+	total := int64(0)
+	for i := range transactions{
+		for b := range mcc{
+			if transactions[i].MccCode == mcc[b]{
+				total += transactions[i].Sum
+			}
+		}
+	}
+	return total
+}
