@@ -2,17 +2,16 @@ package main
 
 import (
 	"fmt"
-	card2 "github.com/lizaMosiyash/bgo-1_homework-1.3/card"
 	card "github.com/lizaMosiyash/bgo-1_homework-1.3/pkg"
 	"time"
 )
 
 func main() {
 	master := &card.Card{
-		Id: 1,
-		Balance: 1_000_00,
+		Id:       1,
+		Balance:  1_000_00,
 		Currency: "RUB",
-		Number: "1111_1111_1111_0000",
+		Number:   "1111_1111_1111_0000",
 		Transactions: []*card.Transaction{
 			&card.Transaction{
 				Id:      1,
@@ -32,8 +31,6 @@ func main() {
 	}
 	fmt.Println(master)
 
-
-
 	newTransaction := &card.Transaction{
 		Id:      3,
 		Sum:     999_99,
@@ -49,7 +46,7 @@ func main() {
 	card.AddTransaction(master, newTransaction)
 	fmt.Println(card.SumByMCC(master.Transactions, mccCodes))
 
-	category := card2.TranslateMCC(master.Transactions[0].MccCode)
+	category := card.TranslateMCC(master.Transactions[0].MccCode)
 	fmt.Println(category)
 
 }
